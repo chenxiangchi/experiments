@@ -1,2 +1,5 @@
 catkin_ws/build
 catkin_ws/devel
+.gitignore
+catkin_ws/.vscode
+catkin_ws/.catkin_workspace
