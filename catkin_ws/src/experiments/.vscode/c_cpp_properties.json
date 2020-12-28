@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/wanttoeat/spinnaker_ws/devel/include",
+        "/home/wanttoeat/assemble_ws/devel/include",
+        "/home/wanttoeat/catkin_ws/devel/include",
+        "/opt/ros/kinetic/include",
+        "/home/wanttoeat/WanttoeatProject/catkin_ws/src/experiments/include",
+        "/usr/include"
+      ],
+      "name": "Linux"
+    }
+  ]
+}

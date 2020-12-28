@@ -1,0 +1,9 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/wanttoeat/spinnaker_ws/devel/lib/python2.7/dist-packages",
+        "/home/wanttoeat/assemble_ws/devel/lib/python2.7/dist-packages",
+        "/home/wanttoeat/catkin_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/kinetic/lib/python2.7/dist-packages",
+        "/usr/lib/python2.7/dist-packages"
+    ]
+}

@@ -1,0 +1,7 @@
+<launch>
+<group ns="ur16e">
+<param name="ip_address" value="192.168.3.1"/>
+<node name="controller" pkg="ur16e_controller" type="controller" respawn="true"/>
+<node name="receiver" pkg="ur16e_controller" type="receiver" respawn="true"/>
+</group>
+</launch>
