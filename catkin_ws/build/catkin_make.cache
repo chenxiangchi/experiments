@@ -1,2 +1,0 @@
-experiments:ft_ros:ur16e_ros
--DCATKIN_DEVEL_PREFIX=/home/tencent1/experiments/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/tencent1/experiments/catkin_ws/install -G Unix Makefiles

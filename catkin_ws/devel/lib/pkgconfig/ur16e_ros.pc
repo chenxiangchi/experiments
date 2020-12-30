@@ -1,8 +1,0 @@
-prefix=/home/tencent1/experiments/catkin_ws/devel
-
-Name: ur16e_ros
-Description: Description of ur16e_ros
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
