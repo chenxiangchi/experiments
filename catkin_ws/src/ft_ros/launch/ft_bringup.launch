@@ -1,0 +1,6 @@
+<launch>
+<group ns="ft_sensor">
+       <node name="ft_main" pkg="ft_ros" type="ft_main" respawn="true"/>
+        <node name="netft_node" pkg="netft_rdt_driver" type="netft_node" respawn="true"/>
+</group>
+</launch>

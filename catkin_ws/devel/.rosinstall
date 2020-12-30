@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/tencent1/experiments/catkin_ws/devel/setup.sh

@@ -13,6 +13,9 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(ur_rtde REQUIRED)
 
+add_library(${PROJECT_NAME}
+src/AdmittanceControl.cpp)
+
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ur16e_controller
@@ -22,9 +25,12 @@ catkin_package(
 
 
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
+
+add_executable(main src/admittance_control_main.cpp)
+target_link_libraries(main PRIVATE ${PROJECT_NAME} ur_rtde::rtde ${catkin_LIBRARIES})
 
 

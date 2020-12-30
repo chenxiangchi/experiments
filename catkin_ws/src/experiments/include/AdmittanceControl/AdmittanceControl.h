@@ -6,17 +6,26 @@
 #include <geometry_msgs/WrenchStamped.h>
 #include <sensor_msgs/JointState.h>
 #include <Eigen/Dense>
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <fstream>
 
+#define HOME_PATH getenv("HOME")
 #define LOOP_RATE 500.0
+#define IP_ADDRESS "192.168.3.1"
+
 using namespace Eigen;
+using namespace std;
+using namespace std::chrono;
 
 class AdmittanceControl
 {   
 public:
     /// Constructor
-    AdmittanceControl(std::string ip_address):controller(ip_address),receiver(ip_address),loop_rate(LOOP_RATE)
+    AdmittanceControl(string ip_address):controller(ip_address),receiver(ip_address),loop_rate(LOOP_RATE)
     {
-
+        Init();
     }
 
 public:
@@ -28,10 +37,22 @@ public:
     ur_rtde::RTDEReceiveInterface receiver;
     /// Current tool twist
     Matrix<double,6,1> current_tool_twist;
-    /// Current wrench data
-    Matrix<double,6,1> current_wrench_data;
+    /// Current filtered wrench data
+    Matrix<double,6,1> current_filtered_wrench_data;
+    /// Temp current raw wrench data
+    Matrix<double,6,1> current_raw_wrench_data;
+    /// Temp current filtered wrench data
+    Matrix<double,6,1> _current_filtered_wrench_data;
+    /// Current raw wrench data
+    Matrix<double,6,1> _current_raw_wrench_data;
+    /// Compensated wrench data for temperature drift
+    Matrix<double,6,1> compensated_wrench_data;
+    ///
+    double sigma_temp;
     /// Current tool acceleration
     Matrix<double,6,1> current_tool_acc;
+    /// Current tool pose
+    Matrix<double,6,1> current_tool_pose;
     /// Expected wrench data
     Matrix<double,6,1> expected_wrench_data;
     /// Expected tool twist
@@ -47,20 +68,28 @@ public:
     /// Ros nodehandle
     ros::NodeHandle nh;
     /// Transformed wrench data subscriber
-    ros::Subscriber wrench_data_sub;
+    ros::Subscriber transformed_wrench_data_sub;
+    /// Raw wrench data subscriber
+    ros::Subscriber raw_wrench_data_sub;
     /// Control interval
     double timer;
+    /// Origin joints' posistion
+    vector<double> origin_q;
 public:
 
-    MatrixXd Vector2Eigen(std::vector<double> input);
+    MatrixXd Vector2Eigen(vector<double> input);
 
     void UpdateData();
 
     void Init();
 
-    void WrenchCallback(const geometry_msgs::WrenchStamped &input);
+    void TransformedWrenchCallback(const geometry_msgs::WrenchStamped &input);
     
+    void RawWrenchCallback(const geometry_msgs::WrenchStamped &input);
+
     void Execute();
+    
+    void TempComp();
 
     void Spin();
 };
