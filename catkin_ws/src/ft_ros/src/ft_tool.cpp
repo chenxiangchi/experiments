@@ -140,7 +140,7 @@ void FTProcessor::init()
 
     Deadzone.force.x = 1;
     Deadzone.force.y = 1;
-    Deadzone.force.z = 1;
+    Deadzone.force.z = 0;
     Deadzone.torque.x = 0.1;
     Deadzone.torque.y = 0.1;
     Deadzone.torque.z = 0.1;
@@ -192,9 +192,9 @@ void FTProcessor::spin()
             /// Compensate for the zero drift
             driftCompensation(wrench_data);
             /// Filter high frequency noise
-            //lowpassFilter();
+            lowpassFilter();
             /// Set threshold
-            //wrench_data.wrench = setDeadzone(wrench_data.wrench, Deadzone);
+            wrench_data.wrench = setDeadzone(wrench_data.wrench, Deadzone);
             /// Publish Transformed wrench data
             ft_wrench_pub.publish(wrench_data);
 

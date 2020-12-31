@@ -75,6 +75,13 @@ public:
     double timer;
     /// Origin joints' posistion
     vector<double> origin_q;
+    ros::Publisher tool_twist_pub, //< Jool velocity publisher
+      tool_pose_pub,             //< Jool pose publisher
+      joint_state_pub;           //< Joints's state publisher
+      geometry_msgs::TwistStamped twist; //< Tool velocity
+  geometry_msgs::PoseStamped pose;   //< Tool Pose
+  double theta;                      //< Rotation angle
+
 public:
 
     MatrixXd Vector2Eigen(vector<double> input);
